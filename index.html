@@ -2,22 +2,28 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Aplikasi Apps Script</title>
+    <title>Aplikasi UANGKU</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-    <h1>Data dari Google Apps Script</h1>
-    <div id="hasil">Memuat data...</div>
+<body class="bg-slate-900 text-white flex items-center justify-center h-screen">
+    <div class="bg-slate-800 p-8 rounded-2xl shadow-xl text-center">
+        <h1 id="app-name" class="text-3xl font-bold text-emerald-400 mb-2">Memuat...</h1>
+        <p id="app-status" class="text-slate-400"></p>
+    </div>
 
     <script>
-        // Ganti dengan URL Web App Apps Script Anda
         const url = "https://script.google.com/macros/s/AKfycbx2H5V-lEb0Q2Um-NRQ-bax_fgLKdDf05MCKl4YRaMzKL0HBMHA76e9rw335nxntCfN/exec";
 
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                document.getElementById('hasil').innerText = JSON.stringify(data);
+                document.getElementById('app-name').innerText = data.appName;
+                document.getElementById('app-status').innerText = `Status: ${data.status} (v${data.version})`;
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('app-name').innerText = "Gagal memuat data";
+            });
     </script>
 </body>
 </html>
