@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Aplikasi Apps Script</title>
+</head>
+<body>
+    <h1>Data dari Google Apps Script</h1>
+    <div id="hasil">Memuat data...</div>
+
+    <script>
+        // Ganti dengan URL Web App Apps Script Anda
+        const url = "https://script.google.com/macros/s/AKfycbx2H5V-lEb0Q2Um-NRQ-bax_fgLKdDf05MCKl4YRaMzKL0HBMHA76e9rw335nxntCfN/exec";
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('hasil').innerText = JSON.stringify(data);
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>
